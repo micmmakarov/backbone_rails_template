@@ -21,3 +21,4 @@ class Jsonland.Views.Posts extends Backbone.View
   create: (e) ->
     e.preventDefault()
     @collection.create(Jsonland.jsonize($(@form)))
+    $(@form).find("input").val("")
