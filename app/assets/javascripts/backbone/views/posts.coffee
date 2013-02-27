@@ -5,6 +5,7 @@ class Jsonland.Views.Posts extends Backbone.View
     @collection.on 'reset', @render, @
     @collection.on 'add', @render, @
     @form = ""
+    ($ "body").prepend HandlebarsTemplates['new_post']({})
 
   events:
     'click .create-new':'create'
