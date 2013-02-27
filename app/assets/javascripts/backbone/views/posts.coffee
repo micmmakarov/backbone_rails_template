@@ -5,10 +5,9 @@ class Jsonland.Views.Posts extends Backbone.View
     @collection.on 'reset', @render, @
     @collection.on 'add', @render, @
     @form = ""
-    ($ "body").prepend HandlebarsTemplates['new_post']({})
 
   events:
-    'click .create-new':'create'
+    'click .submit':'create'
 
   addOne: (post) ->
     view = new Jsonland.Views.Post(model: post)
@@ -16,10 +15,11 @@ class Jsonland.Views.Posts extends Backbone.View
 
   render: ->
     @$el.html HandlebarsTemplates['posts']({})
+    ($ "#create_new").prepend HandlebarsTemplates['new_post']({})
     @collection.each(@addOne, @)
     @
 
   create: (e) ->
-    e.preventDefault()
+    title = $("")
     @collection.create(Jsonland.jsonize($(@form)))
     $(@form).find("input").val("")
