@@ -5,10 +5,11 @@ class Jsonland.Routers.main extends Backbone.Router
 
   routes:
     'posts'       : 'posts'
-    'index'       : 'index'
+    '/'       : 'index'
 
   posts: ->
-    @view = new Jsonland.Views.Posts()
+    @view = new Jsonland.Views.Posts
+      el:"#content"
 
   index: ->
     alert "Going to posts, baby"

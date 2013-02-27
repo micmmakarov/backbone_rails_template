@@ -16,3 +16,16 @@ window.Jsonland =
 
 $ ->
   Jsonland.init()
+
+App = window.Jsonland
+
+App.jsonize = (obj) ->
+  result = {}
+  $.each obj.serializeArray(), (_, kv) ->
+    rails_field = kv.name.match(/[^[\]]+(?=])/g)
+    if rails_field
+      name = rails_field[0]
+    else
+      name = kv.name
+    result[name] = kv.value
+  result
